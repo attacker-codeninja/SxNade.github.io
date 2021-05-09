@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CITYf By :: SxNade</title>
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="CITYf.css">
+<center><h1>WELCOME TO CITYf</h1></center>
+<br>
+<h2>#1 GAINING INITIAL FOOTHOLD</h2>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+<br>
+<h3> (a) Starting with a nmap Scan to Enumerate For ports and services running on Them</h3><b>More on NMAP: </b><b><a href="https://nmap.org/book/toc.html" target="_blank" rel="noopener noreferrer">Read More Here</a></b> 
+<p>{Below is a typical nmap command that enumerates the target services and ports to maximum!}</p>
+<center><h2>$ nmap -PA -sC -sV -p- 192.168.1.1</h2></center>
+<p align="left"><h3>What does this nmap command do?</h3></p>
+<ul type="disc"></ul>
+<li> -PA -> Tells nmap to use TCP/ACK For Host Discovery</li>
+<li> -sC -> Turns on script scanning</li>
+<li> -sV -> Turns on service Detection</li>
+<li> -p- Tells nmap to scan For all ports from 1-65535</li>
+<li> IP{192.168.1.1} -> The IP address Of your Target</li>
+<h2>This will Return with a number of ports and services running on those ports</h2>
+<center><img src="scan.png"></center>
+<br>
+<hr style="width:50%;text-align:left;margin-left:0">
+<h3> (b) Most common ports Enumeration</h3>
+<h2>* After you are Done with the nmap scan then the First step is Look at all the Indentified Versions through <b>searchsploit</b> or <b>Google</b> To find any Publically available exploits</h2>
+<b><a href="https://www.exploit-db.com/searchsploit" target="_blank" rel="noopener noreferrer">More on Searchsploit</a></b>
+<center><img src="sploit.png"></center>
+<br>
+<br>
+<ul>
+<h2><li>FTP -> First Thing to Check with FTP is If FTP anonymous Login is Allowed {Login to FTP with both user and password as "anonymous"}</li></h2>
+<center><img src="ftp.png"></center>
+<h2><li>HTTP -> The simplest Thing to do is visit the web server</li></h2>
+<p align="left"><b>#1 Try to look arround If the web-server is Running some-kind of CMS or PHP application and Then see if there are any Public Exploits of that application</b></p>
+<p align="left"><b>#2 Try viewing the source code of the HTML Pages to see If you can Find anything sensitive such as base64 strings or any admin panel Directories</b></p>
+<p align="left"><b>#3 Some web-service will contain suspicious{that is non-default} images/GIF/mp4 that may contain something sensitive in the metadata :: In such case do the stated Below!</b></p>
+<h3> Download the Image and View the Metdata of that image using exiftool with Following command: <b>exiftool image.png</b> <a href="https://linuxhint.com/get_filea_metadata_exif_tool/" target="_blank" rel="noopener noreferrer">More on ExifTool</a></h3> 
+<p align="left"><b>#4 After done with all the steps Above If nothing is Found Then You Should Try Directory Busting to Look For Hidden Directories or admin Panels on the webserver</b></p>
+<br>
+<br>
+<h4><p align="center">(a) simple Directory Busting using Dirb -> dirb http://192.168.43.7 {This will simply use a common.txt wordlist that comes with DIRB}</p></h4>
+<center><img src="dirb_com.png"></center>
+<h4><p align="center">(b) second Stage Directory Busting with Dirb -> dirb http://192.168.43.7 /usr/share/wordlist/dirb/big.txt {This will use a bigger wordlist named big.txt}</p></h4>
+<center><img src="dirb_big.png"></center>
+<h4><p align="center">(c) Advanced Directory Busting using Gobuster and Seclists-> gobuster dir -u http://192.168.43.7 -w /usr/share/seclists/Discovery/Web-Content/directory-list-1.0.txt {the Web-Content Directory of Seclists Contains a number of Directory Busting Lists!}</p></h4>
+<b><a href="https://github.com/danielmiessler/SecLists" target="_blank" rel="noopener noreferrer">More on Seclists</a></b>
+<p> AND </p>
+<b><a href="https://null-byte.wonderhowto.com/how-to/scan-websites-for-interesting-directories-files-with-gobuster-0197226/" target="_blank" rel="noopener noreferrer">More on Gobuster</a></b>
+<center><img src="go_bust.png"></center>
+<h4><p align="center">WHEN DOING DIRECTORY BUSTING YOU SHOULD ALSO KEEP ENUMERATING OTHER PORTS AND SERVICE AS DIRECTORY BUSTING CAN BE TIME CONSUMING!</p></h4>
+</ul>
+</body>
+</html>

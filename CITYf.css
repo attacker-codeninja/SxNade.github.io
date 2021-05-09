@@ -1,0 +1,11 @@
+img {
+	padding: 50px;
+	width: 1000px;
+  	height: 700px;
+  	transition: transform 1s; 
+  	margin: 0 auto;
+}
+
+img:hover {
+	transform: scale(1.2);
+}
